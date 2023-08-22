@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int indexBit = 1, indexByte = 1;
     private String txtBye = "Goodbye :D";
     private String appVersion =
-            "Version 3.5.0 Rebuild " +
+            "Version 3.6.2 Rebuild " +
             "\n [Open beta 👌]...";
 
     private Spinner spnInpUnit, spnOutUnit;

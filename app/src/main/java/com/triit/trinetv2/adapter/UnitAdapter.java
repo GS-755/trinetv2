@@ -73,10 +73,10 @@ public class UnitAdapter {
     public static int getDistance(int mode, int x, int y) {
         switch(mode) {
             case 0: {
-                return Math.abs(unitBit.get(y).getIndex() - unitByte.get(x).getIndex());
+                return Math.abs(unitBit.get(y - 1).getIndex() - unitByte.get(x - 1).getIndex());
             }
             default: {
-                return Math.abs(unitByte.get(x).getIndex() - unitBit.get(y).getIndex());
+                return Math.abs(unitByte.get(x - 1).getIndex() - unitBit.get(y - 1).getIndex());
             }
         }
     }
