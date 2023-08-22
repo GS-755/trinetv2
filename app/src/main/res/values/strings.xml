@@ -1,0 +1,15 @@
+<resources>
+    <string name="waiting_input">Đang chờ nhập dữ liệu...</string>
+    <string name="input_title">Nhập dữ liệu: </string>
+    <string name="unit_convert_main">Đổi đơn vị: </string>
+    <string name="history_title">Lịch sử</string>
+    <string name="del_history">Xoá lịch sử</string>
+    <string name="unit_bit">bit -> Byte</string>
+    <string name="unit_byte">Byte -> bit</string>
+    <string name="input_unit">Đơn vị (bit)</string>
+    <string name="output_unit">Đơn vị (Byte)</string>
+    <string name="button_calc">Tính toán</string>
+    <string name="button_del">Xoá ô nhập</string>
+    <string name="app_name">ĐỔI TỐC ĐỘ MẠNG</string>
+    <string name="version_title">Version 2.0 Rebuild</string>
+</resources>
