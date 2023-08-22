@@ -8,7 +8,10 @@ public class UnitAdapter {
     public static ArrayList<Unit> unitByte = new ArrayList<>();
     public static ArrayList<Unit> unitBit  = new ArrayList<>();
 
+    public static void clearUnitBit() { unitBit.clear(); }
+    public static void clearUnitByte() { unitByte.clear(); }
     public static void loadUnitByte() {
+        clearUnitByte();
         unitByte.add(new Unit(1, "B/s"));
         unitByte.add(new Unit(2, "KB/s"));
         unitByte.add(new Unit(3, "MB/s"));
@@ -56,6 +59,7 @@ public class UnitAdapter {
         return strUnitByte;
     }
     public static void loadUnitBit() {
+        clearUnitBit();
         unitBit.add(new Unit(1, "bps"));
         unitBit.add(new Unit(2, "Kbps"));
         unitBit.add(new Unit(3, "Mbps"));

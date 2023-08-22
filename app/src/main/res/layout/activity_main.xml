@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="@string/waiting_input"
-            android:textSize="16dp"
+            android:textSize="24dp"
             android:textStyle="bold" />
     </LinearLayout>
 

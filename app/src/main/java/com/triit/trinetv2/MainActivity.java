@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private int indexBit = 1, indexByte = 1;
     private String txtBye = "Goodbye :D";
     private String appVersion =
-            "Version 3.4.4 Rebuild " +
+            "Version 3.5.0 Rebuild " +
             "\n [Open beta 👌]...";
 
     private Spinner spnInpUnit, spnOutUnit;
@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup rdgModeSelect;
     private RadioButton rdBitByte, rdByteBit;
     private Button btnCalc, btnClear;
+    private ArrayList<String> inpUnit, outUnit;
+    private ArrayAdapter<String> strBitUnit, strByteUnit;
+
 
     protected void setComponents() {
         rdgModeSelect = findViewById(R.id.rdgModeSelect);
@@ -53,14 +56,16 @@ public class MainActivity extends AppCompatActivity {
         UnitAdapter.loadUnitByte();
         spnInpUnit = findViewById(R.id.spnInpUnit);
         spnOutUnit = findViewById(R.id.spnOutUnit);
-        ArrayList<String> inpUnit = UnitAdapter.getStrBitList();
-        ArrayList<String> outUnit = UnitAdapter.getStrByteList();
-        ArrayAdapter<String> strBitUnit = new
-                ArrayAdapter<>(this, android.R.layout.simple_spinner_item, inpUnit);
-        ArrayAdapter<String> strByteUnit = new
-                ArrayAdapter<>(this, android.R.layout.simple_spinner_item, outUnit);
-        strBitUnit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        strByteUnit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inpUnit = UnitAdapter.getStrBitList();
+        outUnit = UnitAdapter.getStrByteList();
+        strBitUnit = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, inpUnit);
+        strByteUnit = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, outUnit);
+        strBitUnit.
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        strByteUnit.
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnInpUnit.setAdapter(strBitUnit);
         spnOutUnit.setAdapter(strByteUnit);
     }
@@ -111,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.itemHistory: {
                 i = new Intent(this, HistoryActivity.class);
                 i.putExtra("App_Version", appVersion);
-                i.putExtra("Txt_Goodbye", txtBye);
                 startActivity(i);
+                finish();
             } break;
             case R.id.itemVersion: {
                 Toast.makeText(this, appVersion, Toast.LENGTH_SHORT).show();
