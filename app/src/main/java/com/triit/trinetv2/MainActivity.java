@@ -25,11 +25,7 @@ import com.triit.trinetv2.model.Output;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private int indexBit = 1, indexByte = 1;
-    private String txtBye = "Goodbye :D";
-    private String appVersion =
-            "Version 3.6.2 Rebuild " +
-            "\n [Open beta 👌]...";
+    private String appVersion = "Version 3.6.4 Release 1";
 
     private Spinner spnInpUnit, spnOutUnit;
     private TextView tvOutput;
@@ -50,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         btnClear = findViewById(R.id.btnClear);
         //TODO: Set edtValue's default value
         edtValue = findViewById(R.id.edtValue);
-        edtValue.setText("1");
         //TODO: Fill Spinners default values
         UnitAdapter.loadUnitBit();
         UnitAdapter.loadUnitByte();
@@ -97,9 +92,8 @@ public class MainActivity extends AppCompatActivity {
     }
     protected void setActionClear() {
         btnClear.setOnClickListener(e -> {
-            edtValue.setText("1");
+            edtValue.setText("");
             tvOutput.setText("Đang chờ nhập dữ liệu...");
-            Toast.makeText(this, "Đã xoá dữ liệu!", Toast.LENGTH_SHORT).show();
         });
     }
     @Override
