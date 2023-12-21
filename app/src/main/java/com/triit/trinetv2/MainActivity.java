@@ -3,6 +3,7 @@ package com.triit.trinetv2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,7 +26,7 @@ import com.triit.trinetv2.model.Output;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String appVersion = "Version 3.6.4 Release 1";
+    private String appVersion = "Version 3.6.10 Release 2";
 
     private Spinner spnInpUnit, spnOutUnit;
     private TextView tvOutput;
@@ -102,16 +103,25 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent i;
         int id = item.getItemId();
         switch(id) {
             case R.id.itemHistory: {
-                i = new Intent(this, HistoryActivity.class);
-                i.putExtra("App_Version", appVersion);
-                startActivity(i);
-                finish();
+                if(HistoryModule.getItemCount() <= 0) {
+                    Toast.makeText(this,
+                            "Chưa có dữ liệu tính toán!", Toast.LENGTH_SHORT).show();
+
+                    return false;
+                }
+                else {
+                    i = new Intent(this, HistoryActivity.class);
+                    i.putExtra("App_Version", appVersion);
+                    startActivity(i);
+                    finish();
+                }
             } break;
             case R.id.itemVersion: {
                 Toast.makeText(this, appVersion, Toast.LENGTH_SHORT).show();

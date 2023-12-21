@@ -15,6 +15,7 @@ import com.triit.trinetv2.model.Data;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ItemVH> {
     private Context context;
@@ -23,13 +24,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ItemVH> 
     public HistoryAdapter() { }
     public HistoryAdapter(Context context, ArrayList<Data> dataArrayList) {
         this.context = context;
-        this.dataArrayList = dataArrayList;
-    }
-
-    public Context getContext() { return this.context; }
-    public ArrayList<Data> getDataArrayList() { return this.dataArrayList; }
-    public void setContext(Context context) { this.context = context; }
-    public void setDataArrayList(ArrayList<Data> dataArrayList) {
         this.dataArrayList = dataArrayList;
     }
 
@@ -45,15 +39,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ItemVH> 
     public void onBindViewHolder(@NonNull ItemVH holder, int position) {
         LocalTime localTime = dataArrayList.get(position).getTime();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            holder.tvTime.setText(String.format("%d:%d:%d",
+            holder.tvTime.setText(String.format(
+                    new Locale("vi-VN"), "%d:%d:%d",
                     localTime.getHour(), localTime.getMinute(), localTime.getSecond()));
         } else {
-            holder.tvTime.setText("null");
+            holder.tvTime.setText("N/A");
         }
         holder.tvValue.setText(String.format("%s", dataArrayList.get(position).getData()));
     }
     @Override
     public int getItemCount() { return this.dataArrayList.size(); }
+
     public void clearHistory() {
         dataArrayList.clear();
         notifyDataSetChanged();

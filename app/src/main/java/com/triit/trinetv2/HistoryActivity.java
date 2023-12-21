@@ -62,6 +62,10 @@ public class HistoryActivity extends AppCompatActivity {
     public void setActionDelHistory() {
         btnDelHistory.setOnClickListener(e -> {
             historyAdapter.clearHistory();
+            Intent x = new Intent(this, MainActivity.class);
+            startActivity(x);
+            finish();
+            Toast.makeText(this, "Đã xoá lịch sử!", Toast.LENGTH_SHORT).show();
         });
     }
     @Override

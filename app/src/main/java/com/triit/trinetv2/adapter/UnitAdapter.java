@@ -17,10 +17,6 @@ public class UnitAdapter {
         unitByte.add(new Unit(3, "MB/s"));
         unitByte.add(new Unit(4, "GB/s"));
         unitByte.add(new Unit(5, "TB/s"));
-        unitByte.add(new Unit(6, "PB/s"));
-        unitByte.add(new Unit(7, "EB/s"));
-        unitByte.add(new Unit(8, "ZB/s"));
-        unitByte.add(new Unit(9, "YB/s"));
     }
     public static int findIndexBit(String currentBit) {
         int ans = -1;
@@ -65,10 +61,6 @@ public class UnitAdapter {
         unitBit.add(new Unit(3, "Mbps"));
         unitBit.add(new Unit(4, "Gbps"));
         unitBit.add(new Unit(5, "Tbps"));
-        unitBit.add(new Unit(6, "Pbps"));
-        unitBit.add(new Unit(7, "Ebps"));
-        unitBit.add(new Unit(8, "Zbps"));
-        unitBit.add(new Unit(9, "Ybps"));
     }
     public static int getDistance(int mode, int x, int y) {
         switch(mode) {
