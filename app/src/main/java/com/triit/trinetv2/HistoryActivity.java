@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.triit.trinetv2.adapter.HistoryAdapter;
-import com.triit.trinetv2.adapter.HistoryModule;
+import com.triit.trinetv2.module.HistoryModule;
 import com.triit.trinetv2.model.Data;
 
 import java.util.ArrayList;
@@ -61,10 +61,10 @@ public class HistoryActivity extends AppCompatActivity {
     }
     public void setActionDelHistory() {
         btnDelHistory.setOnClickListener(e -> {
-            historyAdapter.clearHistory();
             Intent x = new Intent(this, MainActivity.class);
             startActivity(x);
             finish();
+            historyAdapter.clearHistory();
             Toast.makeText(this, "Đã xoá lịch sử!", Toast.LENGTH_SHORT).show();
         });
     }

@@ -7,19 +7,15 @@ public class Data {
     private double data;
 
     public Data() {
+        this.data = 0;
         this.time = LocalTime.now();
     }
     public Data(double data) {
-        this.time = LocalTime.now();
         this.data = data;
+        this.time = LocalTime.now();
     }
 
     public LocalTime getTime() { return this.time; }
     public double getData() { return this.data; }
     public void setData(double data) { this.data = data; }
-
-    @Override
-    public String toString() {
-        return String.format("Data[value = %s]", this.data);
-    }
 }

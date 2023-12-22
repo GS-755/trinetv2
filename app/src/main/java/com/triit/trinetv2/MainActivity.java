@@ -17,16 +17,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.triit.trinetv2.adapter.HistoryModule;
+import com.triit.trinetv2.module.HistoryModule;
 import com.triit.trinetv2.adapter.UnitAdapter;
-import com.triit.trinetv2.adapter.Validation;
 import com.triit.trinetv2.model.Data;
 import com.triit.trinetv2.model.Output;
+import com.triit.trinetv2.module.Validation;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String appVersion = "Version 3.6.10 Release 2";
+    private String appVersion = "Version 3.6.11 Release 3";
 
     private Spinner spnInpUnit, spnOutUnit;
     private TextView tvOutput;
@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> inpUnit, outUnit;
     private ArrayAdapter<String> strBitUnit, strByteUnit;
 
+    private Data data = new Data();
+    private String input = "";
 
     protected void setComponents() {
         rdgModeSelect = findViewById(R.id.rdgModeSelect);
@@ -68,13 +70,14 @@ public class MainActivity extends AppCompatActivity {
     protected void setActionCalc() {
         btnCalc.setOnClickListener(e -> {
             Output.clearOutput();
-            if(Validation.isValidNumber(edtValue.getText().toString())) {
+            input = edtValue.getText().toString();
+            if(Validation.isValidNumber(input)) {
+                data.setData(Double.parseDouble(input));
                 int mode = 1;
                 if(rdByteBit.isChecked())
                     mode = 0;
                 String bitUnit = spnInpUnit.getSelectedItem().toString();
                 String byteUnit = spnOutUnit.getSelectedItem().toString();
-
                 int size = UnitAdapter.getDistance(mode,
                         UnitAdapter.findIndexBit(bitUnit), UnitAdapter.findIndexByte(byteUnit));
                 Output.setOutput(UnitAdapter.

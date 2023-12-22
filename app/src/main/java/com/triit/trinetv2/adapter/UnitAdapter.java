@@ -63,14 +63,11 @@ public class UnitAdapter {
         unitBit.add(new Unit(5, "Tbps"));
     }
     public static int getDistance(int mode, int x, int y) {
-        switch(mode) {
-            case 0: {
-                return Math.abs(unitBit.get(y - 1).getIndex() - unitByte.get(x - 1).getIndex());
-            }
-            default: {
-                return Math.abs(unitByte.get(x - 1).getIndex() - unitBit.get(y - 1).getIndex());
-            }
+        if (mode == 0) {
+            return Math.abs(unitBit.get(y - 1).getIndex() - unitByte.get(x - 1).getIndex());
         }
+
+        return Math.abs(unitByte.get(x - 1).getIndex() - unitBit.get(y - 1).getIndex());
     }
     public static double calculate(int mode, int size, double value) {
         int realSize = (int)Math.pow(1000, size);
