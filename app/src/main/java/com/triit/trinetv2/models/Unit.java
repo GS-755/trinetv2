@@ -1,4 +1,4 @@
-package com.triit.trinetv2.model;
+package com.triit.trinetv2.models;
 
 public class Unit {
     private int index;

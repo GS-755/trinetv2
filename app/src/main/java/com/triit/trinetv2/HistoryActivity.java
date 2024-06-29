@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.triit.trinetv2.adapter.HistoryAdapter;
 import com.triit.trinetv2.module.HistoryModule;
-import com.triit.trinetv2.model.Data;
+import com.triit.trinetv2.models.Data;
 
 import java.util.ArrayList;
 

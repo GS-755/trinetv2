@@ -1,6 +1,6 @@
 package com.triit.trinetv2.adapter;
 
-import com.triit.trinetv2.model.Unit;
+import com.triit.trinetv2.models.Unit;
 
 import java.util.ArrayList;
 
@@ -19,25 +19,25 @@ public class UnitAdapter {
         unitByte.add(new Unit(5, "TB/s"));
     }
     public static int findIndexBit(String currentBit) {
-        int ans = -1;
+        int index = -1;
         for(Unit unit : unitBit) {
             if(unit.getUnitName().equals(currentBit)) {
-                ans = unit.getIndex();
+                index = unit.getIndex();
                 break;
             }
         }
 
-        return ans;
+        return index;
     }
     public static int findIndexByte(String currentByte) {
-        int ans = -1;
+        int index = -1;
         for(Unit unit : unitByte)
             if(unit.getUnitName().equals(currentByte)) {
-                ans = unit.getIndex();
+                index = unit.getIndex();
                 break;
             }
 
-        return ans;
+        return index;
     }
     public static ArrayList<String> getStrBitList() {
         ArrayList<String> strUnitBit = new ArrayList<>();
@@ -64,10 +64,10 @@ public class UnitAdapter {
     }
     public static int getDistance(int mode, int x, int y) {
         if (mode == 0) {
-            return Math.abs(unitBit.get(y - 1).getIndex() - unitByte.get(x - 1).getIndex());
+            return unitBit.get(y - 1).getIndex() - unitByte.get(x - 1).getIndex();
         }
 
-        return Math.abs(unitByte.get(x - 1).getIndex() - unitBit.get(y - 1).getIndex());
+        return unitByte.get(x - 1).getIndex() - unitBit.get(y - 1).getIndex();
     }
     public static double calculate(int mode, int size, double value) {
         int realSize = (int)Math.pow(1000, size);
@@ -75,24 +75,24 @@ public class UnitAdapter {
             case 0: {
                 // Byte * 8 = bit
                 if(size == 0) {
-                    return value * 8;
+                    return (value * 8);
                 } else {
                     if(size < 0) {
-                        return value * 8 * realSize;
+                        return (value * 8) / realSize;
                     } else {
-                        return value * 8 / realSize;
+                        return (value * 8) * realSize;
                     }
                 }
             }
             default: {
                 // bit / 8 = Byte
                 if(size == 0) {
-                    return value / 8;
+                    return (value / 8);
                 } else {
                     if(size < 0) {
-                        return value / 8 * realSize;
+                        return (value / 8) / realSize;
                     } else {
-                        return value / 8 / realSize;
+                        return (value / 8) * realSize;
                     }
                 }
             }

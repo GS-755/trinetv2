@@ -1,6 +1,4 @@
-package com.triit.trinetv2.model;
-
-import java.text.DecimalFormat;
+package com.triit.trinetv2.models;
 
 public class Output {
     private static double output = 0;

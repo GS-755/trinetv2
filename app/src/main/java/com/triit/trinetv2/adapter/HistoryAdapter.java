@@ -1,5 +1,6 @@
 package com.triit.trinetv2.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -11,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.triit.trinetv2.R;
-import com.triit.trinetv2.model.Data;
+import com.triit.trinetv2.models.Data;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -35,17 +36,19 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ItemVH> 
 
         return new ItemVH(view);
     }
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull ItemVH holder, int position) {
         LocalTime localTime = dataArrayList.get(position).getTime();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             holder.tvTime.setText(String.format(
-                    new Locale("vi-VN"), "%d:%d:%d",
+                    new Locale("vi-VN"), "%2d:%2d:%2d",
                     localTime.getHour(), localTime.getMinute(), localTime.getSecond()));
         } else {
             holder.tvTime.setText("N/A");
         }
-        holder.tvValue.setText(String.format("%s", dataArrayList.get(position).getData()));
+
+        holder.tvValue.setText(String.format("%.2f", dataArrayList.get(position).getData()));
     }
     @Override
     public int getItemCount() { return this.dataArrayList.size(); }

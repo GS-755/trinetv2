@@ -1,6 +1,6 @@
 package com.triit.trinetv2.module;
 
-import com.triit.trinetv2.model.Data;
+import com.triit.trinetv2.models.Data;
 
 import java.util.ArrayList;
 

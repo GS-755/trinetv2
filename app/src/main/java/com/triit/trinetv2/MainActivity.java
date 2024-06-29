@@ -19,14 +19,14 @@ import android.widget.Toast;
 
 import com.triit.trinetv2.module.HistoryModule;
 import com.triit.trinetv2.adapter.UnitAdapter;
-import com.triit.trinetv2.model.Data;
-import com.triit.trinetv2.model.Output;
+import com.triit.trinetv2.models.Data;
+import com.triit.trinetv2.models.Output;
 import com.triit.trinetv2.module.Validation;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private String appVersion = "Version 3.6.11 Release 3";
+    private String appVersion = "Version 3.6.11 Release 3 \n[Hotfix 1]";
 
     private Spinner spnInpUnit, spnOutUnit;
     private TextView tvOutput;
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         spnInpUnit.setAdapter(strBitUnit);
         spnOutUnit.setAdapter(strByteUnit);
     }
+    @SuppressLint("DefaultLocale")
     protected void setActionCalc() {
         btnCalc.setOnClickListener(e -> {
             Output.clearOutput();
@@ -78,22 +79,29 @@ public class MainActivity extends AppCompatActivity {
                     mode = 0;
                 String bitUnit = spnInpUnit.getSelectedItem().toString();
                 String byteUnit = spnOutUnit.getSelectedItem().toString();
+                // Get size of 2 units
                 int size = UnitAdapter.getDistance(mode,
                         UnitAdapter.findIndexBit(bitUnit), UnitAdapter.findIndexByte(byteUnit));
-                Output.setOutput(UnitAdapter.
-                        calculate(mode, size, Double.parseDouble(edtValue.getText().toString())));
+                // Get user input data
+                double input = Double.parseDouble(edtValue.getText().toString());
+                // Set output to the static object "Output"
+                Output.setOutput(UnitAdapter.calculate(mode, size, input));
+                // Display converted value to TextView
                 if(mode == 1) {
-                    tvOutput.setText(String.format("%s %s", Output.getOutput(), byteUnit));
+                    tvOutput.setText(String.format("%.2f %s", Output.getOutput(), byteUnit));
                 } else {
-                    tvOutput.setText(String.format("%s %s", Output.getOutput(), bitUnit));
+                    tvOutput.setText(String.format("%.2f %s", Output.getOutput(), bitUnit));
                 }
+                // Add converted value to RecyclerView
                 HistoryModule.addHistory(new Data(Output.getOutput()));
             } else {
+                // Things happened if input validation is failed
                 Toast.makeText(this,
                         "Dữ liệu KHÔNG hợp lệ!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+    @SuppressLint("SetTextI18n")
     protected void setActionClear() {
         btnClear.setOnClickListener(e -> {
             edtValue.setText("");
